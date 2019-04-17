@@ -2,12 +2,12 @@ version: 2
 jobs:
   unit_test:
     docker:
-      - image: circleci/node:10
+      - image: centos:7
     steps:
       - run: echo "test"
   build:
     docker:
-      - image: circleci/node:10
+      - image: centos:7
     steps:
       - checkout
       - setup_remote_docker
