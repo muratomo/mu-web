@@ -26,4 +26,4 @@ yum install -y nginx
 
 cp ./files/mu-web.conf /etc/nginx/conf.d/mu-web.conf
 
-/usr/sbin/nginx -t -c /etc/nginx/conf.d/mu-web.conf
+/usr/sbin/nginx -t
