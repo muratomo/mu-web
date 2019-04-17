@@ -14,10 +14,10 @@ jobs:
       - run: ./files/setup.sh
       - run: docker build -t mu-web .
       - run:
-        command: |
-          docker run -d mu-web --name mu-web-container
-          docker exec /usr/sbin/nginx -g "daemon off;"
-          docker exec mu-web-container curl --retry 10 --retry-connrefused http://localhost:8080
+          command: |
+            docker run -d mu-web --name mu-web-container
+            docker exec /usr/sbin/nginx -g "daemon off;"
+            docker exec mu-web-container curl --retry 10 --retry-connrefused http://localhost:80
 
 workflows:
   version: 2
