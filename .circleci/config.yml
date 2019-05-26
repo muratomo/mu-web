@@ -12,7 +12,8 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: ./files/setup.sh
-      - run: docker build -t mu-web .
+      - run:
+          command: docker build -t mu-web .
       - run:
           command: |
             docker run -d mu-web --name mu-web-container
