@@ -2,12 +2,12 @@ version: 2
 jobs:
   unit_test:
     docker:
-      - image: node:12-stretch
+      - image: circleci/node:12-stretch
     steps:
       - run: echo "test"
   build:
     docker:
-      - image: node:12-stretch
+      - image: circleci/node:12-stretch
     steps:
       - checkout
       - setup_remote_docker
