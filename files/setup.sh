@@ -2,27 +2,17 @@
 
 set -o pipefail
 
-CENTOS_VERSION=7
-ARCH=`arch`
+DEBIAN_NAME=stretch
 
 # setting nginx
-cat <<EOF > /etc/yum.repos.d/nginx.repo
-[nginx-stable]
-name=nginx stable repo
-baseurl=http://nginx.org/packages/centos/${CENTOS_VERSION}/${ARCH}/
-gpgcheck=1
-enabled=1
-gpgkey=https://nginx.org/keys/nginx_signing.key
-
-[nginx-mainline]
-name=nginx mainline repo
-baseurl=http://nginx.org/packages/mainline/centos/${CENTOS_VERSION}/${ARCH}/
-gpgcheck=1
-enabled=0
-gpgkey=https://nginx.org/keys/nginx_signing.key
+curl -fsSL https://nginx.org/keys/nginx_signing.key | sudo apt-key add -
+cat <<EOF > /etc/apt/sources.list.d/nginx.list
+deb http://nginx.org/packages/debian/ ${DEBIAN_NAME} nginx
+deb-src http://nginx.org/packages/debian/ ${DEBIAN_NAME} nginx
 EOF
 
-yum install -y nginx
+apt update
+apt remove -y nginx && apt install -y nginx
 
 cp ./files/mu-web.conf /etc/nginx/conf.d/mu-web.conf
 
