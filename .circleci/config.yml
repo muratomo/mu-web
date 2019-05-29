@@ -12,16 +12,16 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: docker image build 
+          name: Docker image build
           command: docker build -t mu-web .
       - run:
-          name: save docker image
-          command: docker image save mu-web > mu-web.tar
-      - run:
-          name: check docker run
+          name: Check docker run
           command: |
             docker run -d --name mu-web-container mu-web
             docker exec mu-web-container curl --retry 10 --retry-connrefused http://localhost/status
+      - run:
+          name: Save docker image
+          command: docker image save mu-web > mu-web.tar
 
 workflows:
   version: 2
