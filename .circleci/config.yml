@@ -39,7 +39,10 @@ jobs:
           command: docker load -i ./mu-web.tar
       - run:
           name: Install aws-cli
-          command: sudo pip install awscli
+          command: |
+            curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+            unzip awscli-bundle.zip
+            sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
       - run:
           name: Login ECR
           command: $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
