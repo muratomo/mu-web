@@ -38,13 +38,13 @@ jobs:
           name: Install pip
           command: |
             curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
-            sudo python get-pip.py --user
+            python get-pip.py --user
       - run:
           name: Load docker image
           command: docker load -i ./mu-web.tar
       - run:
           name: Install aws-cli
-          command: sudo pip install awscli --upgrade --user
+          command: pip install awscli --upgrade --user
       - run:
           name: Login ECR
           command: $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
