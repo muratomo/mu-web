@@ -36,7 +36,9 @@ jobs:
           at: .
       - run:
           name: Install pip
-          command: curl -kL https://bootstrap.pypa.io/get-pip.py | python
+          command: |
+            curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+            sudo python get-pip.py --user
       - run:
           name: Load docker image
           command: docker load -i ./mu-web.tar
