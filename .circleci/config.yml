@@ -12,16 +12,40 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: docker image build 
+          name: Docker image build
           command: docker build -t mu-web .
       - run:
-          name: save docker image
-          command: docker image save mu-web > mu-web.tar
-      - run:
-          name: check docker run
+          name: Check docker run
           command: |
             docker run -d --name mu-web-container mu-web
-            docker exec mu-web-container curl --retry 10 --retry-connrefused http://localhost/status
+            docker exec mu-web-container curl --retry 10 --retry-connrefused http://localhost/status | grep 'Connection OK'
+      - run:
+          name: Save docker image
+          command: docker image save mu-web > ./mu-web.tar
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./mu-web.tar
+  push:
+    docker:
+      - image: circleci/node:12-stretch
+    steps:
+      - checkout
+      - setup_remote_docker
+      - attach_workspace:
+          at: .
+      - run:
+          name: Load docker image
+          command: docker load -i ./mu-web.tar
+      - run:
+          name: Login ECR
+          command: $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
+      - run:
+          name: Tag to latest
+          command: docker tag mu-web:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest
+      - run:
+          name: Push image to ECR
+          command: docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest
 
 workflows:
   version: 2
@@ -31,3 +55,9 @@ workflows:
       - build:
           requires: 
             - test
+      - push:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
