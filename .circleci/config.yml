@@ -35,17 +35,14 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: Install python
-          command: sudo apt install python3-dev
+          name: Install pip
+          command: curl -kL https://bootstrap.pypa.io/get-pip.py | python --user
       - run:
           name: Load docker image
           command: docker load -i ./mu-web.tar
       - run:
           name: Install aws-cli
-          command: |
-            curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-            unzip awscli-bundle.zip
-            sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+          command: sudo pip install awscli --upgrade --user
       - run:
           name: Login ECR
           command: $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
