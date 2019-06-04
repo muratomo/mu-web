@@ -36,7 +36,7 @@ jobs:
           at: .
       - run:
           name: Install python
-          command: sudo apt-get install python3
+          command: sudo apt install python3
       - run:
           name: Load docker image
           command: docker load -i ./mu-web.tar
