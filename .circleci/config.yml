@@ -18,7 +18,7 @@ jobs:
           name: Check docker run
           command: |
             docker run -d --name mu-web-container mu-web
-            docker exec mu-web-container curl --retry 10 --retry-connrefused http://localhost/status
+            docker exec mu-web-container curl --retry 10 --retry-connrefused http://localhost/status | grep 'Connection OK'
       - run:
           name: Save docker image
           command: docker image save mu-web > ./mu-web.tar
