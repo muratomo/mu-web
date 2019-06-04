@@ -38,6 +38,9 @@ jobs:
           name: Load docker image
           command: docker load -i ./mu-web.tar
       - run:
+          name: Install aws-cli
+          command: sudo pip install awscli
+      - run:
           name: Login ECR
           command: $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
       - run:
