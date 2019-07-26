@@ -53,8 +53,6 @@ jobs:
   deploy:
     docker:
       - image: circleci/node:12-stretch
-    environment:
-      DOCKER_IMAGE: 
     steps:
       - checkout
       - setup_remote_docker
@@ -71,6 +69,16 @@ jobs:
           name: Setup ecs-cli
           command: |
             ecs-cli configure --cluster ${ECS_CLUSTER} --default-launch-type EC2 --region ${AWS_DEFAULT_REGION} --config-name ecs-config
+      # 初回はService定義がないため、Stop Serviceをコメントアウトする必要がある。。。
+      - run:
+          name: Stop Service
+          command: |
+            ecs-cli compose \
+              --file .circleci/composition.yml \
+              --project-name mu-web \
+              --ecs-params .circleci/ecs-params.yml \
+              --cluster-config ecs-config \
+              service stop
       - run:
           name: Start Service
           command: |
