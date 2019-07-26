@@ -76,6 +76,7 @@ jobs:
           name: Stop Service
           command: |
             ecs-cli compose service ps \
+              --file .circleci/composition.yml
               --desired-status "RUNNING" \
               --cluster-config ecs-config
             ecs-cli compose \
@@ -97,12 +98,4 @@ workflows:
   pipeline:
     jobs:
       - test
-      - build:
-          requires: 
-            - test
-      - push:
-          requires:
-            - build
-      - deploy:
-          requires:
-            - push
+      - deploy
