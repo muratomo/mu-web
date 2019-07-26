@@ -73,19 +73,6 @@ jobs:
           command: |
             ecs-cli configure --cluster ${ECS_CLUSTER} --default-launch-type EC2 --region ${AWS_DEFAULT_REGION} --config-name ecs-config
       - run:
-          name: Stop Service
-          command: |
-            ecs-cli compose \
-              --file .circleci/composition.yml \
-              service ps \
-              --desired-status "RUNNING" \
-              --cluster-config ecs-config \
-            ecs-cli compose \
-              --file .circleci/composition.yml \
-              --ecs-params .circleci/ecs-params.yml \
-              --cluster-config ecs-config \
-              service rm
-      - run:
           name: Start Service
           command: |
             ecs-cli compose \
