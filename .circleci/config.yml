@@ -100,6 +100,8 @@ workflows:
                 - dev
                 - master
       - push:
+          requires:
+            - build
           filters:
             branches:
               only: master
