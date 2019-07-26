@@ -75,10 +75,11 @@ jobs:
       - run:
           name: Stop Service
           command: |
-            ecs-cli compose service ps \
-              --file .circleci/composition.yml
+            ecs-cli compose \
+              --file .circleci/composition.yml \
               --desired-status "RUNNING" \
-              --cluster-config ecs-config
+              --cluster-config ecs-config \
+              service ps
             ecs-cli compose \
               --file .circleci/composition.yml \
               --ecs-params .circleci/ecs-params.yml \
