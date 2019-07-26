@@ -103,4 +103,5 @@ workflows:
             - build
           filters:
             branches:
-              only: master
+              only: dev
+      - deploy:
