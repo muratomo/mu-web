@@ -93,4 +93,19 @@ workflows:
   version: 2
   pipeline:
     jobs:
-      - deploy
+      - build:
+          filters:
+            branches:
+              only:
+                - dev
+                - master
+      - push:
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
