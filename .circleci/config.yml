@@ -107,7 +107,7 @@ workflows:
               only: master
       - deploy:
           requires:
-            - build
+            - push
           filters:
             branches:
               only: master
