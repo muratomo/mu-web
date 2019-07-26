@@ -1,10 +1,5 @@
 version: 2
 jobs:
-  test:
-    docker:
-      - image: circleci/node:12-stretch
-    steps:
-      - run: echo "test"
   build:
     docker:
       - image: circleci/node:12-stretch
@@ -59,10 +54,14 @@ jobs:
     docker:
       - image: circleci/node:12-stretch
     environment:
-      DOCKER_IMAGE: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest
+      DOCKER_IMAGE: 
     steps:
       - checkout
       - setup_remote_docker
+      - run:
+          name: Setup Enviroment
+          command:
+            echo 'export DOCKER_IMAGE="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest"' >> $BASH_ENV
       - run:
           name: Install ecs-cli
           command: |
@@ -85,5 +84,4 @@ workflows:
   version: 2
   pipeline:
     jobs:
-      - test
       - deploy
