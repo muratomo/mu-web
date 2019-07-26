@@ -77,18 +77,17 @@ jobs:
           command: |
             ecs-cli compose \
               --file .circleci/composition.yml \
-              service down \
               --ecs-params .circleci/ecs-params.yml \
-              --cluster-config ecs-config
+              --cluster-config ecs-config \
+              service rm
       - run:
           name: Start Service
           command: |
             ecs-cli compose \
               --file .circleci/composition.yml \
-              service up \
               --ecs-params .circleci/ecs-params.yml \
-              --cluster-config ecs-config
-              
+              --cluster-config ecs-config \
+              service up
 
 workflows:
   version: 2
@@ -101,7 +100,6 @@ workflows:
       - push:
           requires:
             - build
-          filters:
-            branches:
-              only: dev
-      - deploy
+      - deploy:
+          requires:
+            - push
