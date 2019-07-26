@@ -55,6 +55,40 @@ jobs:
       - run:
           name: Push image to ECR
           command: docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest
+  deploy:
+    docker:
+      - image: circleci/node:12-stretch
+    environment:
+      DOCKER_IMAGE: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install ecs-cli
+          command: |
+            sudo curl -o /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
+            sudo chmod +x /usr/local/bin/ecs-cli
+      - run:
+          name: Setup ecs-cli
+          command: |
+            ecs-cli configure --cluster ${ECS_CLUSTER} --default-launch-type EC2 --region ${AWS_DEFAULT_REGION} --config-name ecs-config
+      - run:
+          name: Stop Service
+          command: |
+            ecs-cli compose \
+              --file .circleci/composition.yml \
+              service down \
+              --ecs-params .circleci/ecs-params.yml \
+              --cluster-config ecs-config
+      - run:
+          name: Start Service
+          command: |
+            ecs-cli compose \
+              --file .circleci/composition.yml \
+              service up \
+              --ecs-params .circleci/ecs-params.yml \
+              --cluster-config ecs-config
+              
 
 workflows:
   version: 2
