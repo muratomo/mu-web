@@ -71,10 +71,10 @@ jobs:
           name: Setup ecs-cli
           command: |
             ecs-cli configure --cluster ${ECS_CLUSTER} --default-launch-type EC2 --region ${AWS_DEFAULT_REGION} --config-name ecs-config
-      -run:
-        name: check
-        command: |
-          echo $DOCKER_IMAGE
+      - run:
+          name: check
+          command: |
+            echo $DOCKER_IMAGE
       - run:
           name: Start Service
           command: |
