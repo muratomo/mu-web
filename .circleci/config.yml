@@ -106,4 +106,3 @@ workflows:
       - deploy:
           requires:
             - push
-DescribeServices
