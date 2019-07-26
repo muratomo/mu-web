@@ -72,14 +72,11 @@ jobs:
           command: |
             ecs-cli configure --cluster ${ECS_CLUSTER} --default-launch-type EC2 --region ${AWS_DEFAULT_REGION} --config-name ecs-config
       - run:
-          name: check
-          command: |
-            echo $AWS_DEFAULT_REGION
-      - run:
           name: Start Service
           command: |
             ecs-cli compose \
               --file .circleci/composition.yml \
+              --project-name mu-web
               --ecs-params .circleci/ecs-params.yml \
               --cluster-config ecs-config \
               service up
