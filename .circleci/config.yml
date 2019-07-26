@@ -76,7 +76,7 @@ jobs:
           command: |
             ecs-cli compose \
               --file .circleci/composition.yml \
-              --project-name mu-web
+              --project-name mu-web \
               --ecs-params .circleci/ecs-params.yml \
               --cluster-config ecs-config \
               service up
