@@ -1,0 +1,13 @@
+version: "3"
+services:
+  mu-web-service:
+    image: ${DOCKER_IMAGE}
+    command: []
+    ports:
+      - "80:80"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: mu-web-log
+        awslogs-region: ${AWS_DEFAULT_REGION}
+        awslogs-stream-prefix: web

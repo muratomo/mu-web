@@ -1,0 +1,6 @@
+version: 1
+task_definition:
+  services:
+    mu-web-service:
+      mem_limit: 524288000 # 500MB
+      mem_reservation: 262144000 # 250MB
