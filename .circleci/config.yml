@@ -61,7 +61,7 @@ jobs:
       - run:
           name: Setup Enviroment
           command:
-            echo 'export DOCKER_IMAGE="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest"' >> $BASH_ENV
+            echo 'export DOCKER_IMAGE=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest' >> $BASH_ENV
       - run:
           name: Install ecs-cli
           command: |
@@ -71,6 +71,10 @@ jobs:
           name: Setup ecs-cli
           command: |
             ecs-cli configure --cluster ${ECS_CLUSTER} --default-launch-type EC2 --region ${AWS_DEFAULT_REGION} --config-name ecs-config
+      -run:
+        name: check
+        command: |
+          echo $DOCKER_IMAGE
       - run:
           name: Start Service
           command: |
