@@ -1,10 +1,5 @@
 version: 2
 jobs:
-  test:
-    docker:
-      - image: circleci/node:12-stretch
-    steps:
-      - run: echo "test"
   build:
     docker:
       - image: circleci/node:12-stretch
@@ -58,11 +53,13 @@ jobs:
   deploy:
     docker:
       - image: circleci/node:12-stretch
-    environment:
-      DOCKER_IMAGE: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest
     steps:
       - checkout
       - setup_remote_docker
+      - run:
+          name: Setup Enviroment
+          command:
+            echo 'export DOCKER_IMAGE=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest' >> $BASH_ENV
       - run:
           name: Install ecs-cli
           command: |
@@ -72,33 +69,41 @@ jobs:
           name: Setup ecs-cli
           command: |
             ecs-cli configure --cluster ${ECS_CLUSTER} --default-launch-type EC2 --region ${AWS_DEFAULT_REGION} --config-name ecs-config
+      # 初回はService定義がないため、Stop Serviceをコメントアウトする必要がある。。。
       - run:
           name: Stop Service
           command: |
             ecs-cli compose \
               --file .circleci/composition.yml \
-              service down \
+              --project-name mu-web \
               --ecs-params .circleci/ecs-params.yml \
-              --cluster-config ecs-config
+              --cluster-config ecs-config \
+              service stop
       - run:
           name: Start Service
           command: |
             ecs-cli compose \
               --file .circleci/composition.yml \
-              service up \
+              --project-name mu-web \
               --ecs-params .circleci/ecs-params.yml \
-              --cluster-config ecs-config
-              
+              --cluster-config ecs-config \
+              service up
 
 workflows:
   version: 2
   pipeline:
     jobs:
-      - test
       - build:
-          requires: 
-            - test
+          filters:
+            branches:
+              only:
+                - dev
+                - master
       - push:
+          filters:
+            branches:
+              only: master
+      - deploy:
           requires:
             - build
           filters:
