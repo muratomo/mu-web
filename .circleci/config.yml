@@ -74,7 +74,7 @@ jobs:
       - run:
           name: check
           command: |
-            echo $DOCKER_IMAGE
+            echo $AWS_DEFAULT_REGION
       - run:
           name: Start Service
           command: |
