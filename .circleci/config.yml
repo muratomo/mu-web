@@ -77,9 +77,9 @@ jobs:
           command: |
             ecs-cli compose \
               --file .circleci/composition.yml \
+              service ps \
               --desired-status "RUNNING" \
               --cluster-config ecs-config \
-              service ps
             ecs-cli compose \
               --file .circleci/composition.yml \
               --ecs-params .circleci/ecs-params.yml \
