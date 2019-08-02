@@ -93,12 +93,7 @@ workflows:
   version: 2
   pipeline:
     jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - dev
-                - master
+      - build
       - push:
           requires:
             - build
