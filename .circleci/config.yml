@@ -94,11 +94,6 @@ workflows:
   pipeline:
     jobs:
       - build:
-          filters:
-            branches:
-              only:
-                - dev
-                - master
       - push:
           requires:
             - build
