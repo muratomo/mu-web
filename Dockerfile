@@ -12,7 +12,7 @@ COPY ./file/mu-web.conf /etc/nginx/conf.d/
 ENV NODE_ENV=production
 WORKDIR /var/www
 COPY ./app app/
-RUN npm install && npm run export
+RUN cd app && npm install && npm run export
 
 EXPOSE 80
 
