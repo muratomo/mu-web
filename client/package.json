@@ -1,0 +1,16 @@
+{
+  "name": "mu-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nuxt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "muratomo",
+  "license": "MIT",
+  "dependencies": {
+    "nuxt": "^2.10.2"
+  }
+}
