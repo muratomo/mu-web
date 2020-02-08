@@ -9,7 +9,7 @@ RUN apt update && apt remove -y nginx && apt install -y nginx && apt clean
 COPY ./file/mu-web.conf /etc/nginx/conf.d/
 
 # start next
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 WORKDIR /var/www
 COPY ./app app/
 RUN cd app && npm install && npm run export
