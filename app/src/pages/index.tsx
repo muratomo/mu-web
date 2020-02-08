@@ -32,7 +32,6 @@ const profileJSX: JSX.Element = <div>
 export default class TopPage extends React.Component<{}> {
   static async getInitialProps({ req }: NextPageContext) {
     const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
-    console.log(userAgent);
     return { userAgent }
   }
 
