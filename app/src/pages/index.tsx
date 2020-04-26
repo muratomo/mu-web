@@ -1,6 +1,6 @@
-import '../style/index.scss';
 import * as React from 'react';
-import { NextPageContext } from 'next'
+import { NextPageContext } from 'next';
+import Header from '../components/header';
 
 const profileJSX: JSX.Element = <div>
   <h2>Abount me</h2>
@@ -30,16 +30,15 @@ const profileJSX: JSX.Element = <div>
 </div>;
 
 export default class TopPage extends React.Component<{}> {
-  static async getInitialProps({ req }: NextPageContext) {
+  static async getInitialProps({ req }: NextPageContext): Promise<object> {
     const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
-    return { userAgent }
+    return { userAgent };
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div>
-        <h1 id="title">Mu Web</h1>
-        <p style={{ 'textAlign': 'center' }}>サイト構築中。。。</p>
+        <Header />
         <hr></hr>
         {profileJSX}
       </div>
