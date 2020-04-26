@@ -3,5 +3,15 @@ body {
 }
 
 #title {
-  text-align: center;
+  width: 100%;
+  height: 200px;
+  background-image: url('/header.png');
+  background-size: cover;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+
+  h1 {
+    text-align: center;
+    color: #FFFFFF;
+  }
 }
