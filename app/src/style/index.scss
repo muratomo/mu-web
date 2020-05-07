@@ -1,21 +1,7 @@
 @charset 'UTF-8';
 
 @import './reset';
+@import './define';
 
-body {
-  font-family: 'Open Sans', 'Century Gothic', sans-serif;
-}
-
-#title {
-  width: 100%;
-  height: 200px;
-  background-image: url('/header.png');
-  background-size: cover;
-  background-position: center 40%;
-  background-repeat: no-repeat;
-
-  h1 {
-    text-align: center;
-    color: #FFFFFF;
-  }
-}
+@import './base';
+@import './component/header';
