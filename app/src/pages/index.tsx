@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { NextPageContext } from 'next';
 import Header from '../components/header';
+import Footer from '../components/footer';
 
 const profileJSX: JSX.Element = <div>
   <h2>Abount me</h2>
@@ -40,6 +41,7 @@ export default class TopPage extends React.Component<{}> {
       <div>
         <Header />
         {profileJSX}
+        <Footer />
       </div>
     );
   }
