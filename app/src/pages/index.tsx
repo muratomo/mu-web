@@ -39,7 +39,6 @@ export default class TopPage extends React.Component<{}> {
     return (
       <div>
         <Header />
-        <hr></hr>
         {profileJSX}
       </div>
     );
