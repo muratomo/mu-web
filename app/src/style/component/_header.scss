@@ -1,0 +1,19 @@
+.mu-header {
+  display: flex;
+  place-content: center center;
+  z-index: 80;
+  width: 100%;
+  height: 200px;
+  background-image: url('/header.png');
+  background-size: cover;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    color: $mu-white;
+  }
+}
