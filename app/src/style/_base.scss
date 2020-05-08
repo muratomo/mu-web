@@ -1,8 +1,13 @@
 body {
   font-family: 'Open Sans', 'Century Gothic', sans-serif;
   line-height: 1.2;
+  background-color: #b0b3bf;
 }
 
 .main-content {
   margin: 0px $margin*6;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }

@@ -1,4 +1,5 @@
 .mu-card {
+  margin: $margin;
   z-index: $layer-2;
   box-shadow: 0px 2px 4px rgba(0, 0,0, 0.2);
   background-color: $mu-white;
@@ -16,5 +17,17 @@
 
   &__content {
     padding: $padding*2 $padding*3;
+  }
+
+  &--1of1 {
+    width: 100%;
+  }
+
+  &--1of2 {
+    width: calc(50% - #{$margin} * 2);
+  }
+
+  &--1of3 {
+    width: calc(33.3% - #{$margin}*2);
   }
 }
