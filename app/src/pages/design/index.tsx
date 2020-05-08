@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Link from 'next/link';
 import { NextPageContext } from 'next';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
