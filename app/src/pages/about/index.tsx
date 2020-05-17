@@ -3,31 +3,55 @@ import { NextPageContext } from 'next';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 
-const profileJSX: JSX.Element = <div>
-  <h2>About me</h2>
-  <h3>名前: Murakami Tomoyuki</h3>
-  <p>社内エンジニアとして、社内向けのWebアプリケーション開発を行っています。<br/>
-  どちらかと言うとフロントエンドよりもバックエンドの方が好みではあります。
-  </p>
-  <h3>エンジニアスキル</h3>
-  <ul>
-    <li>Language</li>
-      <ul><li>Java, Kotlin, JavaScript, TypeScript, PHP, ShellScript, C</li></ul>
-    <li>FrameWork</li>
-      <ul><li>SpringBoot, Angular, ...Next.jsは勉強中</li></ul>
-    <li>CI/CD</li>
-      <ul><li>CircleCI, Chef, Fabric</li></ul>
-    <li>Platform</li>
-      <ul><li>Node.js, Android, CentOS, Nginx, Cloud Foundry, Docker</li></ul>
-    <li>DataStore</li>
-      <ul><li>MySQL, Redis</li></ul>
-  </ul>
-  <h2>Links</h2>
-  <ul>
-    <li>Twitter: <a href="https://twitter.com/mura40424">@mura40424</a></li>
-    <li>GitHub: <a href="https://github.com/muratomo">muratomo</a></li>
-    <li>Blog: <a href="https://mura-elma.hatenablog.com">Afternoon Log</a></li>
-  </ul>
+const profile: JSX.Element = <div className="main-content">
+  <div className="mu-card mu-card--1of1">
+    <div className="mu-card__headline"><h5>Profile</h5></div>
+    <div className="mu-card__content">
+      <p>Name: muratomo</p>
+      <p>社内のWebエンジニアとして、Webアプリケーション開発に従事</p>
+    </div>
+  </div>
+  <div className="mu-card mu-card--1of1">
+    <div className="mu-card__headline"><h5>Skill set</h5></div>
+    <div className="mu-card__content">
+      <ul className="mu-list">
+        <li>Language
+          <ul className="mu-list">
+            <li>Java, Kotlin, JavaScript, TypeScript, PHP, ShellScript, C</li>
+          </ul>
+        </li>
+        <li>FrameWork
+          <ul className="mu-list">
+            <li>SpringBoot, Angular, ...Next.jsは勉強中</li>
+          </ul>
+        </li>
+        <li>CI/CD
+          <ul className="mu-list">
+            <li>CircleCI, Chef, Fabric</li>
+          </ul>
+        </li>
+        <li>Platform
+          <ul className="mu-list">
+            <li>Node.js, Android, CentOS, Nginx, Cloud Foundry, Docker</li>
+          </ul>
+        </li>
+        <li>DataStore
+          <ul className="mu-list">
+            <li>MySQL, Redis</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div className="mu-card mu-card--1of1">
+    <div className="mu-card__headline"><h5>Accounts</h5></div>
+    <div className="mu-card__content">
+      <ul className="mu-list">
+        <li>Twitter: <a href="https://twitter.com/mura40424">@mura40424</a></li>
+        <li>GitHub: <a href="https://github.com/muratomo">muratomo</a></li>
+      </ul>
+    </div>
+  </div>
 </div>;
 
 export default class AboutPage extends React.Component<{}> {
@@ -40,7 +64,9 @@ export default class AboutPage extends React.Component<{}> {
     return (
       <div>
         <Header />
-        {profileJSX}
+        <section>
+          {profile}
+        </section>
         <Footer />
       </div>
     );
