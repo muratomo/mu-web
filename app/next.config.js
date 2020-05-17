@@ -4,9 +4,8 @@ module.exports = withSass({
   /* config options here */
   exportPathMap: () => {
     return {
-      '/': {
-        page: '/'
-      }
+      '/': { page: '/' },
+      '/about': { page: '/about' }
     };
   }
 });
