@@ -46,7 +46,7 @@ const profile: JSX.Element = <div className="main-content">
   <div className="mu-card mu-card--1of1">
     <div className="mu-card__headline"><h5>Accounts</h5></div>
     <div className="mu-card__content">
-      <ul>
+      <ul className="mu-list">
         <li>Twitter: <a href="https://twitter.com/mura40424">@mura40424</a></li>
         <li>GitHub: <a href="https://github.com/muratomo">muratomo</a></li>
       </ul>
