@@ -5,15 +5,13 @@ import Footer from '../../components/footer';
 
 const profile: JSX.Element = <div className="main-content">
   <div className="mu-card mu-card--1of1">
-    <div className="mu-card__headline"><h5>Profile</h5></div>
+    <div className="mu-card__headline"><h5>About me</h5></div>
     <div className="mu-card__content">
+      <h6>Profile</h6>
       <p>Name: muratomo</p>
       <p>社内のWebエンジニアとして、Webアプリケーション開発に従事</p>
-    </div>
-  </div>
-  <div className="mu-card mu-card--1of1">
-    <div className="mu-card__headline"><h5>Skill set</h5></div>
-    <div className="mu-card__content">
+      <br />
+      <h6>Skill set</h6>
       <ul className="mu-list">
         <li>Language
           <ul className="mu-list">
@@ -22,7 +20,7 @@ const profile: JSX.Element = <div className="main-content">
         </li>
         <li>FrameWork
           <ul className="mu-list">
-            <li>SpringBoot, Angular, ...Next.jsは勉強中</li>
+            <li>SpringBoot, Angular, Next.jsは勉強中</li>
           </ul>
         </li>
         <li>CI/CD
@@ -46,10 +44,8 @@ const profile: JSX.Element = <div className="main-content">
   <div className="mu-card mu-card--1of1">
     <div className="mu-card__headline"><h5>Accounts</h5></div>
     <div className="mu-card__content">
-      <ul className="mu-list">
-        <li>Twitter: <a href="https://twitter.com/mura40424">@mura40424</a></li>
-        <li>GitHub: <a href="https://github.com/muratomo">muratomo</a></li>
-      </ul>
+      <p>Twitter: <a href="https://twitter.com/mura40424">@mura40424</a></p>
+      <p>GitHub: <a href="https://github.com/muratomo">muratomo</a></p>
     </div>
   </div>
 </div>;

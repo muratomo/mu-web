@@ -1,4 +1,6 @@
 .mu-list {
+  list-style-position: inside;
+
   > li {
     margin: 0px 0px $margin $margin;
   }
