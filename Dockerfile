@@ -1,4 +1,4 @@
-FROM circleci/node:12.18.4-buster
+FROM node:12.18.4-buster
 
 # install nginx
 RUN curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add -
