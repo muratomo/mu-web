@@ -15,7 +15,7 @@ const content: JSX.Element =
       </li>
       <li className="mu-list__image"><img src="/rhombus.svg"/></li>
       <li className="mu-list__link">
-        <Link href="https://mura-elma.hatenablog.com"><a target="_blank" rel="noopener noreferrer">Blog</a></Link>
+        <a href="https://mura-elma.hatenablog.com"　target="_blank" rel="noopener noreferrer">Blog</a>
       </li>
     </ul>
   </div>;
