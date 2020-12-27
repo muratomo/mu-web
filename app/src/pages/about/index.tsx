@@ -3,54 +3,39 @@ import { NextPageContext } from 'next';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 
-const profile: JSX.Element = <div className="main-content">
-  <div className="mu-card mu-card--1of1">
-    <div className="mu-card__headline"><h5>About me</h5></div>
-    <div className="mu-card__content">
-      <h6>Profile</h6>
-      <p>Name: muratomo</p>
-      <p>社内のWebエンジニアとして、Webアプリケーション開発に従事</p>
-      <br />
-      <h6>Skill set</h6>
-      <ul className="mu-list">
-        <li>Language
-          <ul className="mu-list">
-            <li>Java, Kotlin, JavaScript, TypeScript, PHP, ShellScript, C</li>
-          </ul>
-        </li>
-        <li>FrameWork
-          <ul className="mu-list">
-            <li>SpringBoot, Angular, Next.jsは勉強中</li>
-          </ul>
-        </li>
-        <li>CI/CD
-          <ul className="mu-list">
-            <li>CircleCI, Chef, Fabric</li>
-          </ul>
-        </li>
-        <li>Platform
-          <ul className="mu-list">
-            <li>Node.js, Android, CentOS, Nginx, Cloud Foundry, Docker</li>
-          </ul>
-        </li>
-        <li>DataStore
-          <ul className="mu-list">
-            <li>MySQL, Redis</li>
-          </ul>
-        </li>
-      </ul>
+const profile: JSX.Element =
+  <div className="main-content">
+    <div className="mu-flex mu-flex__horizon">
+      <img className="mu-profile-icon" src="/profile-icon.png"/>
+      <div className="mu-profile">
+        <div className="mu-profile__name">むらとも</div>
+        <p className="mu-profile__text">
+          ITエンジニアとして主に社内のWebアプリケーション開発・運用・保守に従事.<br/>
+          安全という言葉が好き.<br/>
+          趣味でデザインやイラストなど頑張り始めました.
+        </p>
+        <div className="mu-profile__section-name">スキルセット</div>
+        <p className="mu-profile__text">
+          最近はTypeScript/JavaScriptばかりです.<br/>
+          要キャッチアップなのがJava/Kotlinあたり.
+        </p>
+        <div className="mu-profile__section-name">アカウント</div>
+        <div className="mu-flex mu-flex__horizon">
+          <a href="https://github.com/muratomo" target="_blank" rel="noopener noreferrer">
+            <img className="mu-profile__account" src="/github.png"/>
+          </a>
+          <a href="https://twitter.com/mura40424" target="_blank" rel="noopener noreferrer">
+            <img className="mu-profile__account" src="/twitter.png"/>
+          </a>
+          <a href="https://www.pixiv.net/users/1862637" target="_blank" rel="noopener noreferrer">
+            <img className="mu-profile__account" src="/pixiv.png"/>
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
-  <div className="mu-card mu-card--1of1">
-    <div className="mu-card__headline"><h5>Accounts</h5></div>
-    <div className="mu-card__content">
-      <p>Twitter: <a href="https://twitter.com/mura40424">@mura40424</a></p>
-      <p>GitHub: <a href="https://github.com/muratomo">muratomo</a></p>
-    </div>
-  </div>
-</div>;
+  </div>;
 
-export default class AboutPage extends React.Component<{}> {
+class AboutPage extends React.Component<{}> {
   static async getInitialProps({ req }: NextPageContext): Promise<object> {
     const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
     return { userAgent };
@@ -58,9 +43,9 @@ export default class AboutPage extends React.Component<{}> {
 
   render(): JSX.Element {
     return (
-      <div>
+      <div className="mu-page mu-flex mu-flex__vertical">
         <Header />
-        <section>
+        <section className="mu-flex__main">
           {profile}
         </section>
         <Footer />
@@ -68,3 +53,5 @@ export default class AboutPage extends React.Component<{}> {
     );
   }
 }
+
+export default AboutPage;

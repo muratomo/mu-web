@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="184" height="120" viewBox="0 0 184 120">
+  <g id="グループ_6" data-name="グループ 6" transform="translate(-448 -152)">
+    <g id="長方形_1" data-name="長方形 1" transform="translate(448 152)" fill="rgba(211,216,227,0)" stroke="#d3d8e3" stroke-width="7">
+      <rect width="184" height="120" rx="16" stroke="none"/>
+      <rect x="3.5" y="3.5" width="177" height="113" rx="12.5" fill="none"/>
+    </g>
+    <path id="パス_5" data-name="パス 5" d="M0,28,28,0" transform="translate(480 184)" fill="rgba(211,216,227,0)" stroke="#d3d8e3" stroke-linecap="round" stroke-width="7"/>
+    <path id="パス_6" data-name="パス 6" d="M0,0,28,28" transform="translate(480 212)" fill="rgba(211,216,227,0)" stroke="#d3d8e3" stroke-linecap="round" stroke-width="7"/>
+    <line id="線_10" data-name="線 10" x1="28" y1="28" transform="translate(572 184)" fill="none" stroke="#d3d8e3" stroke-linecap="round" stroke-width="7"/>
+    <line id="線_11" data-name="線 11" x1="28" y2="28" transform="translate(572 212)" fill="none" stroke="#d3d8e3" stroke-linecap="round" stroke-width="7"/>
+    <line id="線_12" data-name="線 12" y1="72" x2="24" transform="translate(528 176)" fill="none" stroke="#d3d8e3" stroke-linecap="round" stroke-width="7"/>
+  </g>
+</svg>

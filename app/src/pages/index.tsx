@@ -1,31 +1,26 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { NextPageContext } from 'next';
-import Header from '../components/header';
 import Footer from '../components/footer';
 
-const content: JSX.Element = <div className="main-content">
-  <Link href="/about">
-    <a className="mu-card mu-card__link mu-card--1of3">
-      <div className="mu-card__headline"><h5>About</h5></div>
-      <div className="mu-card__content">当サイトや私につきまして</div>
-    </a>
-  </Link>
-  <Link href="/design">
-    <a className="mu-card mu-card__link mu-card--1of3">
-      <div className="mu-card__headline"><h5>Design</h5></div>
-      <div className="mu-card__content">当サイトのデザインについて</div>
-    </a>
-  </Link>
-  <Link href="https://mura-elma.hatenablog.com">
-    <a className="mu-card mu-card__link mu-card--1of3" target="_blank" rel="noopener noreferrer">
-      <div className="mu-card__headline"><h5>Blog</h5></div>
-      <div className="mu-card__content">Afternoon Log</div>
-    </a>
-  </Link>
-</div>;
+const content: JSX.Element =
+  <div>
+    <ul className="mu-top-menu">
+      <li className="mu-list__link">
+        <Link href="/about"><a>About</a></Link>
+      </li>
+      <li className="mu-list__image"><img src="/rhombus.svg"/></li>
+      <li className="mu-list__link">
+        <Link href="/development"><a>Development</a></Link>
+      </li>
+      <li className="mu-list__image"><img src="/rhombus.svg"/></li>
+      <li className="mu-list__link">
+        <a href="https://mura-elma.hatenablog.com"　target="_blank" rel="noopener noreferrer">Blog</a>
+      </li>
+    </ul>
+  </div>;
 
-export default class TopPage extends React.Component<{}> {
+class TopPage extends React.Component<{}> {
   static async getInitialProps({ req }: NextPageContext): Promise<object> {
     const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
     return { userAgent };
@@ -33,9 +28,10 @@ export default class TopPage extends React.Component<{}> {
 
   render(): JSX.Element {
     return (
-      <div>
-        <Header />
-        <section>
+      <div className="mu-page mu-flex mu-flex__vertical">
+        <h1 className="mu-title">Mu Web</h1>
+        <img className="mu-top-icon" src="/icon.png"/>
+        <section className="mu-flex__main">
           {content}
         </section>
         <Footer />
@@ -43,3 +39,5 @@ export default class TopPage extends React.Component<{}> {
     );
   }
 }
+
+export default TopPage;

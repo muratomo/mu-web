@@ -1,14 +1,15 @@
 .mu-footer {
-  margin-top: $margin*4;
-  margin-bottom: $margin*2;
+  align-items: center;
+  background-color: #151927;
+  border-top: solid 2px #2D2E33;
   display: flex;
-  align-content: center;
+  height: 60px;
   justify-content: center;
-  z-index: $layer-1;
   width: 100%;
+  z-index: $layer-1;
 
   &__copyright {
     text-align: center;
-    color: $mu-gray;
+    color: $mu-white;
   }
 }

@@ -1,13 +1,65 @@
 body {
-  font-family: 'Open Sans', 'Century Gothic', sans-serif;
+  background-color: #191f34;
+  color: $mu-white;
+  font-family: 'Sawarabi Mincho', sans-serif;
   line-height: 1.2;
-  background-color: #b0b3bf;
+}
+
+.mu-page {
+  min-height: 100vh;
+}
+
+.mu-title {
+  text-align: center;
+  margin: $margin*8 0px;
+}
+
+.mu-top-icon {
+  border-radius: 50%;
+  height: 300px;
+  margin: 0px auto;
+  width: 300px;
+}
+
+.mu-top-menu {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  margin: $margin*10 0px;
+  font-size: 36px;
+}
+
+.mu-profile-icon {
+  border-radius: 50%;
+  margin: 0 $margin*20 auto $margin*10;
+  width: 200px;
+}
+
+.mu-profile {
+  flex: 1;
+
+  &__name {
+    font-size: 36px;
+    margin-bottom: $margin*2;
+  }
+
+  &__section-name {
+    font-size: 27px;
+    margin-bottom: $margin*2;
+  }
+
+  &__text {
+    line-height: 1.5;
+    margin-bottom: $margin*2;
+  }
+
+  &__account {
+    margin-right: $margin*3;
+    width: 40px;
+  }
 }
 
 .main-content {
   margin: 0px $margin*6;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  flex-wrap: wrap;
 }
