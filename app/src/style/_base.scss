@@ -1,13 +1,35 @@
 body {
+  background-color: #191f34;
+  color: $mu-white;
   font-family: 'Sawarabi Mincho', sans-serif;
   line-height: 1.2;
-  background-color: #b0b3bf;
+}
+
+.mu-page {
+  min-height: 100vh;
+}
+
+.mu-title {
+  text-align: center;
+  margin: $margin*8 0px;
+}
+
+.mu-top-icon {
+  border-radius: 50%;
+  height: 300px;
+  margin: 0px auto;
+  width: 300px;
+}
+
+.mu-top-menu {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  margin: $margin*10 0px;
+  font-size: 36px;
 }
 
 .main-content {
   margin: 0px $margin*6;
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  flex-wrap: wrap;
 }
