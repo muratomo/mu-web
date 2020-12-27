@@ -1,18 +1,48 @@
 .mu-header {
-  margin-bottom: $margin*2;
+  margin-top: $margin*6;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: $layer-8;
-  width: 100%;
-  height: 200px;
-  background-image: url('/header.png');
-  background-size: cover;
-  background-position: center 40%;
-  background-repeat: no-repeat;
 
-  &__title {
+  &__primary {
     text-align: center;
-    color: $mu-white;
+    margin: 0px auto;
+  }
+
+  &__secondary {
+    width: 100%;
+
+
+    &-text {
+      color: $mu-blue;
+      text-align: center;
+      width: 50%;
+      font-size: 27px;
+
+      > a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      &:visited {
+        color: inherit;
+      }
+    }
+  }
+
+  &__line {
+    content: "";
+    background-color: $mu-white;
+    border-radius: 4px;
+    height: 4px;
+    width: 100%;
+  }
+
+  &__icon {
+    height: 100%;
+    width: 100px;
+    margin: $margin*2 $margin*4;
   }
 }
