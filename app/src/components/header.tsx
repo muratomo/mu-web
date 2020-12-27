@@ -26,7 +26,7 @@ function Header() {
           <Link href={ PATH_MAP.get(linkPages[1]) || 'NotFound' }><a>{linkPages[1]}</a></Link>
         </div>
       </div>
-      <div className="mu-flex mu-flex__horizon mu-header__secondary mu-flex__center">
+      <div className="mu-flex mu-flex__horizon mu-header__secondary mu-flex__center mu-header__hr">
         <div className="mu-header__line"/>
         <img className="mu-header__icon" src={icon}/>
         <div className="mu-header__line"/>

@@ -14,7 +14,6 @@
   &__secondary {
     width: 100%;
 
-
     &-text {
       color: $mu-blue;
       text-align: center;
@@ -44,5 +43,9 @@
     height: 100%;
     width: 100px;
     margin: $margin*2 $margin*4;
+  }
+
+  &__hr {
+    margin-bottom: $margin*5;
   }
 }

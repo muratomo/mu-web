@@ -30,6 +30,36 @@ body {
   font-size: 36px;
 }
 
+.mu-profile-icon {
+  border-radius: 50%;
+  margin: 0 $margin*20 auto $margin*10;
+  width: 200px;
+}
+
+.mu-profile {
+  flex: 1;
+
+  &__name {
+    font-size: 36px;
+    margin-bottom: $margin*2;
+  }
+
+  &__section-name {
+    font-size: 27px;
+    margin-bottom: $margin*2;
+  }
+
+  &__text {
+    line-height: 1.5;
+    margin-bottom: $margin*2;
+  }
+
+  &__account {
+    margin-right: $margin*3;
+    width: 40px;
+  }
+}
+
 .main-content {
   margin: 0px $margin*6;
 }
