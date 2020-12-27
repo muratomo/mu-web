@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:12-stretch
+      - image: circleci/node:12.18.4-buster
     steps:
       - checkout
       - setup_remote_docker
@@ -23,7 +23,7 @@ jobs:
             - ./mu-web.tar
   push:
     docker:
-      - image: circleci/node:12-stretch
+      - image: circleci/node:12.18.4-buster
     steps:
       - checkout
       - setup_remote_docker
@@ -52,7 +52,7 @@ jobs:
           command: docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest
   deploy:
     docker:
-      - image: circleci/node:12-stretch
+      - image: circleci/node:12.18.4-buster
     steps:
       - checkout
       - setup_remote_docker
