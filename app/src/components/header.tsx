@@ -14,6 +14,8 @@ function Header() {
   let icon = '';
   if (pageName === 'About') {
     icon = '/profile.svg';
+  } else if (pageName === 'Development') {
+    icon = '/development.svg';
   }
   return (
     <header className="mu-header main-content">
