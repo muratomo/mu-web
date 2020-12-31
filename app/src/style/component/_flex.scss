@@ -1,0 +1,20 @@
+.mu-flex {
+  display: flex;
+
+  &__main {
+    flex: 1;
+  }
+
+  &__horizon {
+    flex-direction: row;
+  }
+
+  &__vertical {
+    flex-direction: column;
+  }
+
+  &__center {
+    align-items: center;
+    justify-content: center;
+  }
+}
