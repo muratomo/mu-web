@@ -15,6 +15,7 @@ fi
 nginx
 
 if [ ${RUN_ENV} = "production" ]; then
+  rm -rf "${CERT_DIR}/${DOMAIN}"
   certbot certonly -n --keep-until-expiring --agree-tos \
     --webroot --webroot-path /var/www/app \
     -m ${MAIL_ADDRESS} -d ${DOMAIN}
