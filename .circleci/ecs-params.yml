@@ -1,5 +1,6 @@
 version: 1
 task_definition:
+  task_execution_role: ecsTaskExecutionRole
   services:
     mu-web-service:
       mem_limit: 524288000 # 500MB
