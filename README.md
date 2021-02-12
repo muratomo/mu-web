@@ -12,3 +12,17 @@ web service
 $ cd app
 $ npm run dev
 ```
+
+## run Docker
+
+```bash
+$ rm -f ./app/node_modules
+$ docker build -t mu-web .
+$ docker images
+
+# if exists docker-container
+$ docker ps -a
+$ docker rm <CONTAINER ID>
+
+$ docker run -d -p 80:80 --name mu-web-container mu-web
+```

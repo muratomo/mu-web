@@ -4,3 +4,6 @@ task_definition:
     mu-web-service:
       mem_limit: 524288000 # 500MB
       mem_reservation: 262144000 # 250MB
+      secrets:
+        - value_from: mu-developer-mail
+          name: MAIL_ADDRESS
