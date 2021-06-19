@@ -1,0 +1,254 @@
+/* 背景 */
+/* <system section="background" selected="bg13"> */
+/*
+body { 
+    background-color:#ddd; 
+    background-image:url('https://blog.st-hatena.com/images/theme/backgrounds/theme13.png'); 
+    background-repeat:repeat; 
+    background-attachment:scroll; 
+}
+*/
+/* </system> */
+
+/* ナビゲーションバー */
+.main-navigation {
+    background-color: #4760eb;
+    border-top: 2px solid #111;
+    border-bottom: 3px solid #111;
+    margin: 0;
+    padding: 0;
+}
+.main-navigation a {
+    transition: all .5s ease;
+}
+.main-navigation a:hover {
+    color: #111;
+    background-color: #EEE;
+    box-shadow: 0px -4px 0px rgba(120,210,240,1) inset;
+}
+
+/*日付*/
+.date {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #4760eb;
+    color: #fff;
+}
+.date a {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: absolute;
+    pointer-events:none;
+}
+.hyphen { display: none;}
+.date-year {
+    font-size: 75%;
+    top: 51px;
+    left: 25px;
+    position: absolute;
+}
+.date-month {
+    font-size: 135%;
+    top: 2px;
+    left: 13px;
+    position: absolute;
+}
+.date-day {
+    font-size: 215%;
+    font-weight: bold;
+    top: 12px;
+    right: 5px;
+    position: absolute;
+}
+
+/*カテゴリ*/
+.categories a:before{
+    content: "\f02b";
+    display: inline-block;
+    font-family: FontAwesome;
+    margin-right: 10px;
+}
+.categories a {
+    color: #fff;
+    border: 2px solid #777;
+    background-color: #777;
+}
+
+/*記事*/
+.entry-content h3 a.keyword,
+.entry-content h4 a.keyword,
+.entry-content h5 a.keyword {
+    border-bottom: none;
+}
+.entry-content h3 {
+    font-size: 160%;
+    padding-left: 7px;
+    border-left: 10px solid #4760eb;
+    border-bottom: 6px solid #4760eb;
+}
+.entry-content h4 {
+    padding-left: 7px;
+    border-left: 6px solid #4760eb;
+    border-bottom: 3px solid #4760eb;
+}
+.entry-content h5 {
+    padding-left: 7px;
+    border-left: 4px solid #4760eb;
+}
+.entry-content img {
+    background-color: #cccccc;
+    border: 2px solid #000000;
+    padding: 6px;
+}
+
+/*続きを読む*/
+.entry-content .entry-see-more {
+    background-color: #4760eb;
+    border: 2px solid #4760eb;
+    line-height: 40px;
+}
+.entry-content .entry-see-more:hover {
+    background-color: white;
+    color: #111;
+}
+.entry-content .entry-see-more:before {
+    content: "\f103";
+    display: inline-block;
+    font-family: FontAwesome;
+    margin-right: 10px;
+}
+
+/*シェアボタン*/
+.share-button {
+    margin-bottom: 10px;
+    text-align: left;
+}
+.share-inner a {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 17%;
+    height: 60px;
+    line-height: 25px;
+    font-size: 16px;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+.share-inner .hatena-bookmark-button {
+    color: #008fde;
+    border: 2px solid #008fde;
+}
+.share-inner .facebook-button {
+    color: #305097;
+    border: 2px solid #305097;
+}
+.share-inner .twitter-button {
+    color: #55acee;
+    border: 2px solid #55acee;
+}
+
+/*読者になる*/
+.reader-button {
+    text-align: left;
+}
+.reader-inner:before {
+    content: "\f02d";
+    display: inline-block;
+    font-family: FontAwesome;
+    margin-right: 10px;
+}
+.reader-button .reader-inner {
+    position: relative;
+    text-align: center;
+    width: 170px;
+    line-height: 30px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    color: white;
+    background-color: #777;
+    border: 2px solid #777;
+    border-radius: 2px;
+}
+.reader-button .reader-inner:hover {
+    color: black;
+    background-color: white;
+    border: 2px solid #777;
+}
+
+/*コメントを書く*/
+.comment-box .leave-comment-title {
+    color: white;
+    background-color: #4760eb;
+    border: 2px solid #4760eb;
+    line-height: 40px;
+}
+.comment-box .leave-comment-title:hover {
+    background-color: white;
+    color: #111;
+}
+.comment-box .leave-comment-title:before {
+    content: "\f27b";
+    display: inline-block;
+    font-family: FontAwesome;
+    margin-right: 10px;
+}
+
+/* sidebar */
+.hatena-module-title {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 7px;
+    border: 2px solid #4760eb;
+    border-radius: 3px;
+}
+.hatena-module-profile .hatena-module-title:before {
+    content: "\f007";
+    font-family: FontAwesome;
+    padding-left: 4px;
+    margin-right: 4px;
+}
+.hatena-module-category .hatena-module-title:before {
+    content: "\f02c";
+    font-family: FontAwesome;
+    padding-left: 4px;
+    margin-right: 4px;
+}
+.hatena-module-category .hatena-urllist li a {
+    color: #fff;
+    border: 2px solid #777;
+    background-color: #777;
+}
+.hatena-module-recent-entries .hatena-module-title:before {
+    content: "\f040";
+    font-family: FontAwesome;
+    padding-left: 4px;
+    margin-right: 4px;
+}
+.hatena-module-archive .hatena-module-title:before {
+    content: "\f187";
+    font-family: FontAwesome;
+    padding-left: 4px;
+    margin-right: 4px;
+}
+.hatena-module:nth-of-type(4) .hatena-module-title:before {
+    content: "\f1ab";
+    font-family: FontAwesome;
+    padding-left: 4px;
+    margin-right: 6px;
+}
+.hatena-module:nth-of-type(6) .hatena-module-title:before {
+    content: "\f099";
+    font-family: FontAwesome;
+    padding-left: 4px;
+    margin-right: 5px;
+}
+
+/* プロフィールアイコン */
+img.profile-icon {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+}
