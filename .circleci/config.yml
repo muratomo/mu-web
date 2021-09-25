@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:14.17.6-buster
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
           version: 19.03.14
       - run:
           name: Docker image build
@@ -27,7 +27,8 @@ jobs:
       - image: circleci/node:14.17.6-buster
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 19.03.14
       - attach_workspace:
           at: .
       - run:
@@ -53,7 +54,8 @@ jobs:
       - image: circleci/node:14.17.6-buster
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 19.03.14
       - run:
           name: Setup Enviroment
           command:
