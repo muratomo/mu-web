@@ -7,8 +7,8 @@ const content: JSX.Element = <div className="main-content">
   このサイトのデザインに関するページ
 </div>;
 
-export default class TopPage extends React.Component<{}> {
-  static async getInitialProps({ req }: NextPageContext): Promise<object> {
+export default class TopPage extends React.Component<unknown> {
+  static async getInitialProps({ req }: NextPageContext): Promise<Record<string, unknown>> {
     const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
     return { userAgent };
   }
