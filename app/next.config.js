@@ -1,8 +1,10 @@
-const withSass = require('@zeit/next-sass');
-
-module.exports = withSass({
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
   /* config options here */
-  exportTrailingSlash: true,
+  trailingSlash: true,
+  reactStrictMode: true,
   exportPathMap: () => {
     return {
       '/': { page: '/' },
@@ -10,4 +12,6 @@ module.exports = withSass({
       '/development': { page: '/development' }
     };
   }
-});
+}
+
+module.exports = nextConfig;
