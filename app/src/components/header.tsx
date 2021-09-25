@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { useRouter } from 'next/router'
-import Link from "next/link";
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const PATH_MAP = new Map([['Home', '/'], ['About', '/about'], ['Development', '/development']]);
 
-function Header() {
-  const router = useRouter()
+function Header(): JSX.Element {
+  const router = useRouter();
   const path = router.pathname.slice(1);
   // ヘッダーテキストの設定
   const pageName = path.slice(0, 1 - path.length).toUpperCase() + path.slice(1).toLowerCase();
