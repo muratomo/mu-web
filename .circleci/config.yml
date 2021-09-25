@@ -2,10 +2,11 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:12.18.4-buster
+      - image: circleci/node:14.17.6-buster
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 19.03.14
       - run:
           name: Docker image build
           command: docker build -t mu-web .
@@ -23,10 +24,11 @@ jobs:
             - ./mu-web.tar
   push:
     docker:
-      - image: circleci/node:12.18.4-buster
+      - image: circleci/node:14.17.6-buster
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 19.03.14
       - attach_workspace:
           at: .
       - run:
@@ -49,10 +51,11 @@ jobs:
           command: docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest
   deploy:
     docker:
-      - image: circleci/node:12.18.4-buster
+      - image: circleci/node:14.17.6-buster
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 19.03.14
       - run:
           name: Setup Enviroment
           command:

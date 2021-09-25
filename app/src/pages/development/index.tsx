@@ -3,8 +3,8 @@ import { NextPageContext } from 'next';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
 
-class DevPage extends React.Component<{}> {
-  static async getInitialProps({ req }: NextPageContext): Promise<object> {
+class DevPage extends React.Component<unknown> {
+  static async getInitialProps({ req }: NextPageContext): Promise<Record<string, unknown>> {
     const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
     return { userAgent };
   }
@@ -14,7 +14,7 @@ class DevPage extends React.Component<{}> {
       <div className="mu-page mu-flex mu-flex__vertical">
         <Header />
         <section className="mu-flex__main">
-          <p style={{textAlign: "center"}}>Sorry...<br/>
+          <p style={{textAlign: 'center'}}>Sorry...<br/>
             204 No Content.</p>
         </section>
         <Footer />
