@@ -6,6 +6,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+          version: 19.03.14
       - run:
           name: Docker image build
           command: docker build -t mu-web .
