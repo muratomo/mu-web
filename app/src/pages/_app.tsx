@@ -1,9 +1,9 @@
-import '../style/index.scss';
-import { AppProps } from 'next/app';
-import * as React from 'react';
+import '../style/index.scss'
+import { AppProps } from 'next/app'
+import * as React from 'react'
 
 function App({ Component, pageProps }: AppProps): JSX.Element {
-  return <Component {...pageProps} />;
+  return <Component {...pageProps} />
 }
 
-export default App;
+export default App
