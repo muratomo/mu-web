@@ -5,7 +5,7 @@
   background-color: $mu-white;
 
   &__headline {
-    padding: $padding*2 $padding*3;
+    padding: $padding * 2 $padding * 3;
     border-bottom: 1px solid $mu-gray;
   }
 
@@ -21,7 +21,7 @@
   }
 
   &__content {
-    padding: $padding*2 $padding*3;
+    padding: $padding * 2 $padding * 3;
   }
 
   &--1of1 {
@@ -33,6 +33,6 @@
   }
 
   &--1of3 {
-    width: calc(33.3% - #{$margin}*2);
+    width: calc(33.3% - #{$margin}* 2);
   }
 }
