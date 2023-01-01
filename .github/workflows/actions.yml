@@ -1,6 +1,6 @@
 name: mu-web-workflow
 
-on: push
+on: pull_request
 
 jobs:
   build:
