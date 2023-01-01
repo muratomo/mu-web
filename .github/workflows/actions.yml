@@ -1,0 +1,25 @@
+name: mu-web-workflow
+
+on: pull_request
+
+jobs:
+  build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build docker image
+        run: docker build -t mu-web .
+      - name: Test docker run
+        run: |
+          docker run -d --name mu-web-container mu-web
+          docker exec mu-web-container curl --retry 10 --retry-connrefused http://localhost/status | grep 'Connection OK'
+      - name: Save docker image
+        run: docker image save mu-web > ./mu-web.tar
+      - name: Archive docker image
+        uses: actions/upload-artifact@v3
+        with:
+          name: mu-web-docker-image
+          path: ./mu-web.tar
+          retention-days: 5
