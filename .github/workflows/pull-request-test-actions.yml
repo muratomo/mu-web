@@ -1,4 +1,4 @@
-name: mu-web-workflow
+name: pr-test-actions
 
 on: pull_request
 
@@ -15,11 +15,3 @@ jobs:
         run: |
           docker run -d --name mu-web-container mu-web
           docker exec mu-web-container curl --retry 10 --retry-connrefused http://localhost/status | grep 'Connection OK'
-      - name: Save docker image
-        run: docker image save mu-web > ./mu-web.tar
-      - name: Archive docker image
-        uses: actions/upload-artifact@v3
-        with:
-          name: mu-web-docker-image
-          path: ./mu-web.tar
-          retention-days: 5
