@@ -1,4 +1,4 @@
-name: mu-web-workflow
+name: pr-test-actions
 
 on: pull_request
 
