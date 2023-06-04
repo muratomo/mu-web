@@ -1,0 +1,90 @@
+name: release-actions
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  upload-docker-image:
+    name: Upload Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set Environment
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID}}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          AWS_RESOURCE_NAME_PREFIX: ${{ secrets.AWS_RESOURCE_NAME_PREFIX }}
+        run: |
+          echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" >> $GITHUB_ENV
+          echo "AWS_ACCOUNT_ID=${AWS_ACCOUNT_ID}" >> $GITHUB_ENV
+          echo "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}" >> $GITHUB_ENV
+          echo "AWS_RESOURCE_NAME_PREFIX=${AWS_RESOURCE_NAME_PREFIX}" >> $GITHUB_ENV
+      - name: Build docker image
+        run: docker build -t mu-web .
+      - name: Install aws-cli
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install
+      - name: Login ECR
+        run: |
+          aws ecr get-login-password | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com
+      - name: Tag to latest
+        run: |
+          docker tag mu-web:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest
+      - name: Push to Image
+        run: docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest
+
+  release:
+    name: Deploy to ECS
+    needs: [ upload-docker-image ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set Environment
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID}}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          AWS_RESOURCE_NAME_PREFIX: ${{ secrets.AWS_RESOURCE_NAME_PREFIX }}
+          ECS_CLUSTER: ${{ secrets.ECS_CLUSTER }}
+        run: |
+          echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" >> $GITHUB_ENV
+          echo "AWS_ACCOUNT_ID=${AWS_ACCOUNT_ID}" >> $GITHUB_ENV
+          echo "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}" >> $GITHUB_ENV
+          echo "AWS_RESOURCE_NAME_PREFIX=${AWS_RESOURCE_NAME_PREFIX}" >> $GITHUB_ENV
+          echo "ECS_CLUSTER=${ECS_CLUSTER}" >> $GITHUB_ENV
+          echo "DOCKER_IMAGE=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:latest" >> $GITHUB_ENV
+      - name: Install ecs-cli
+        run: |
+          sudo curl -o /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
+          sudo chmod +x /usr/local/bin/ecs-cli
+      - name: Setup ecs-cli
+        run: |
+          ecs-cli configure --cluster ${ECS_CLUSTER} --default-launch-type EC2 --region ${AWS_DEFAULT_REGION} --config-name ecs-config
+      # 初回はService定義がないため、Stop Serviceをコメントアウトする必要がある。。。
+      - name: Stop Service
+        run: |
+          ecs-cli compose \
+          --file aws/composition.yml \
+          --project-name mu-web \
+          --ecs-params aws/ecs-params.yml \
+          --cluster-config ecs-config \
+          service stop
+      - name: Start Service
+        run: |
+          ecs-cli compose \
+          --file aws/composition.yml \
+          --project-name mu-web \
+          --ecs-params aws/ecs-params.yml \
+          --cluster-config ecs-config \
+          service up
