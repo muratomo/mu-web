@@ -14,4 +14,5 @@ jobs:
       - name: Test docker run
         run: |
           docker run -d --name mu-web-container mu-web
+          sleep 10s
           docker exec mu-web-container curl --retry 10 --retry-connrefused http://localhost/status | grep 'Connection OK'
